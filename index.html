@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-Okul Öğrenci Bilgi Sistemi - Demo</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef2f6;color:#263238}
+.top{background:#0b4f8a;color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 6px #0002}
+.brand{font-size:20px;font-weight:700;user-select:none}.sub{font-size:12px;opacity:.85;margin-top:3px}
+.container{max-width:1100px;margin:20px auto;padding:0 12px}
+.notice{background:#fff;border:1px solid #d7dee7;border-radius:5px;padding:11px 14px;color:#555;font-size:13px;margin-bottom:15px}
+.tabs{display:flex;gap:2px;flex-wrap:wrap;background:#dfe7ef;border-radius:5px 5px 0 0;padding:5px}
+.tab{border:1px solid #c8d2dc;background:#f7f9fb;padding:10px 14px;border-radius:4px;color:#174f7b;cursor:pointer;font-size:13px}
+.tab.active{background:#fff;color:#111;font-weight:bold;border-bottom-color:#fff}
+.card{background:#fff;border:1px solid #d4dce5;border-radius:0 5px 5px 5px;box-shadow:0 1px 3px #0001;padding:18px}
+.panel{display:none}.panel.active{display:block}
+.section-title{font-size:16px;font-weight:bold;color:#174f7b;border-bottom:2px solid #e3e8ed;padding-bottom:8px;margin-bottom:14px}
+.profile{display:grid;grid-template-columns:130px 1fr;gap:20px}
+.avatar{width:120px;height:145px;border:1px solid #cbd4dd;background:#f4f6f8;display:flex;align-items:center;justify-content:center;color:#8a969f;font-size:12px;text-align:center}
+.info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.field{border:1px solid #dce2e8;background:#fafbfc;border-radius:3px;padding:10px}
+.label{font-size:11px;color:#71808c;margin-bottom:4px}.value{font-size:14px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #d7dfe7;padding:9px;text-align:center}th{background:#edf3f8;color:#244f70}td:first-child{text-align:left}
+.smallbtn{border:1px solid #b8c4ce;background:#fff;border-radius:4px;padding:7px 10px;cursor:pointer}
+[contenteditable="true"]{outline:none}
+@media(max-width:700px){.profile{grid-template-columns:1fr}.info{grid-template-columns:1fr}.top{gap:10px}.brand{font-size:16px}.tab{flex:1 1 45%}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div><div class="brand" id="brandTitle">e-Okul Veli Bilgilendirme Sistemi</div><div class="sub">Öğrenci Bilgi Sistemi • Demo</div></div>
+  <div class="sub">Öğrenci Bilgi Sistemi</div>
+</header>
+
+<main class="container">
+  <div class="notice">Bu sayfa yerel çalışan bir <b>öğrenci bilgi sistemi demo</b> arayüzüdür. Bilgiler sadece bu tarayıcıda saklanır.</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('ogrenci',this)">Öğrenci Bilgileri</button>
+    <button class="tab" onclick="showTab('notlar',this)">Not Bilgileri</button>
+    <button class="tab" onclick="showTab('devamsizlik',this)">Devamsızlık</button>
+    <button class="tab" onclick="showTab('sinav',this)">Sınav Tarihleri</button>
+    <button class="tab" onclick="showTab('belge',this)">Belge Bilgileri</button>
+    <button class="tab" onclick="showTab('ders',this)">Ders Programı</button>
+  </div>
+
+  <section class="card">
+    <div id="ogrenci" class="panel active">
+      <div class="section-title">Öğrenci Bilgileri</div>
+      <div class="profile">
+        <div class="avatar">ÖĞRENCİ<br>FOTOĞRAFI</div>
+        <div class="info">
+          <div class="field"><div class="label">Adı</div><div class="value editable" data-key="ad">Osman Nuri</div></div>
+          <div class="field"><div class="label">Soyadı</div><div class="value editable" data-key="soyad">Gökçe</div></div>
+          <div class="field"><div class="label">Sınıf</div><div class="value editable" data-key="sinif">8-A</div></div>
+          <div class="field"><div class="label">Okul No</div><div class="value editable" data-key="okulno">1234</div></div>
+          <div class="field"><div class="label">Okul Adı</div><div class="value editable" data-key="okul">Örnek Ortaokulu</div></div>
+          <div class="field"><div class="label">Şube</div><div class="value editable" data-key="sube">A</div></div>
+          <div class="field"><div class="label">Doğum Tarihi</div><div class="value editable" data-key="dogum">13.02.2013</div></div>
+          <div class="field"><div class="label">Yabancı Dil</div><div class="value editable" data-key="dil">İngilizce</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="notlar" class="panel">
+      <div class="section-title">Not Bilgileri</div>
+      <table id="notesTable">
+        <thead><tr><th>Ders</th><th>1. Sınav</th><th>2. Sınav</th><th>1. Proje</th><th>Ortalama</th></tr></thead>
+        <tbody>
+          <tr><td class="editable" data-key="turkce_ders">Türkçe</td><td class="editable" data-key="turkce_1">95</td><td class="editable" data-key="turkce_2">98</td><td class="editable" data-key="turkce_p">100</td><td class="editable" data-key="turkce_o">97,7</td></tr>
+          <tr><td class="editable" data-key="mat_ders">Matematik</td><td class="editable" data-key="mat_1">100</td><td class="editable" data-key="mat_2">98</td><td class="editable" data-key="mat_p">100</td><td class="editable" data-key="mat_o">99,3</td></tr>
+          <tr><td class="editable" data-key="fen_ders">Fen Bilimleri</td><td class="editable" data-key="fen_1">98</td><td class="editable" data-key="fen_2">100</td><td class="editable" data-key="fen_p">100</td><td class="editable" data-key="fen_o">99,3</td></tr>
+          <tr><td class="editable" data-key="sos_ders">T.C. İnkılap Tarihi</td><td class="editable" data-key="sos_1">100</td><td class="editable" data-key="sos_2">97</td><td class="editable" data-key="sos_p">100</td><td class="editable" data-key="sos_o">99</td></tr>
+          <tr><td class="editable" data-key="ing_ders">İngilizce</td><td class="editable" data-key="ing_1">100</td><td class="editable" data-key="ing_2">100</td><td class="editable" data-key="ing_p">100</td><td class="editable" data-key="ing_o">100</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="devamsizlik" class="panel">
+      <div class="section-title">Devamsızlık Bilgileri</div>
+      <table><thead><tr><th>Devamsızlık Türü</th><th>Gün</th><th>Açıklama</th></tr></thead>
+      <tbody><tr><td class="editable" data-key="dev_tur">Özürlü Devamsızlık</td><td class="editable" data-key="dev_gun">0</td><td class="editable" data-key="dev_acik">Bulunmuyor</td></tr>
+      <tr><td class="editable" data-key="dev_tur2">Özürsüz Devamsızlık</td><td class="editable" data-key="dev_gun2">0</td><td class="editable" data-key="dev_acik2">Bulunmuyor</td></tr></tbody></table>
+    </div>
+
+    <div id="sinav" class="panel">
+      <div class="section-title">Sınav Tarihleri</div>
+      <table><thead><tr><th>Ders</th><th>Sınav</th><th>Tarih</th></tr></thead>
+      <tbody>
+        <tr><td class="editable" data-key="st1">Türkçe</td><td class="editable" data-key="ss1">1. Sınav</td><td class="editable" data-key="sd1">06.10.2026</td></tr>
+        <tr><td class="editable" data-key="st2">Matematik</td><td class="editable" data-key="ss2">1. Sınav</td><td class="editable" data-key="sd2">08.10.2026</td></tr>
+        <tr><td class="editable" data-key="st3">Fen Bilimleri</td><td class="editable" data-key="ss3">1. Sınav</td><td class="editable" data-key="sd3">12.10.2026</td></tr>
+      </tbody></table>
+    </div>
+
+    <div id="belge" class="panel">
+      <div class="section-title">Belge Bilgileri</div>
+      <table><thead><tr><th>Belge</th><th>Durum</th><th>Açıklama</th></tr></thead>
+      <tbody><tr><td class="editable" data-key="belge1">Takdir Belgesi</td><td class="editable" data-key="belge2">Almaya Uygun</td><td class="editable" data-key="belge3">Dönem sonunda hesaplanır.</td></tr></tbody></table>
+    </div>
+
+    <div id="ders" class="panel">
+      <div class="section-title">Haftalık Ders Programı</div>
+      <table><thead><tr><th>Gün</th><th>1. Ders</th><th>2. Ders</th><th>3. Ders</th><th>4. Ders</th></tr></thead>
+      <tbody>
+        <tr><td class="editable" data-key="pzt">Pazartesi</td><td class="editable" data-key="pzt1">Matematik</td><td class="editable" data-key="pzt2">Türkçe</td><td class="editable" data-key="pzt3">Fen</td><td class="editable" data-key="pzt4">İngilizce</td></tr>
+        <tr><td class="editable" data-key="sal">Salı</td><td class="editable" data-key="sal1">Fen</td><td class="editable" data-key="sal2">Matematik</td><td class="editable" data-key="sal3">Beden</td><td class="editable" data-key="sal4">Türkçe</td></tr>
+        <tr><td class="editable" data-key="car">Çarşamba</td><td class="editable" data-key="car1">İngilizce</td><td class="editable" data-key="car2">Fen</td><td class="editable" data-key="car3">Matematik</td><td class="editable" data-key="car4">Müzik</td></tr>
+      </tbody></table>
+    </div>
+  </section>
+</main>
+
+<div id="authPrompt" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
+  <div style="width:min(320px,90%);background:#fff;border-radius:6px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+    <input id="authInput" type="password" placeholder="Oturum Anahtarı" style="width:100%;padding:9px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;">
+    <div style="display:flex;gap:8px;justify-content:flex-end;">
+      <button onclick="closeAuth()" class="smallbtn">İptal</button>
+      <button onclick="verifyAuth()" class="smallbtn">Tamam</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let isEditActive = false;
+const els = [...document.querySelectorAll('.editable')];
+// '1234' şifresinin SHA-256 özeti
+const targetHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+
+function loadData(){
+  els.forEach(el => {
+    const v = localStorage.getItem('eokul_demo_' + el.dataset.key);
+    if(v !== null) el.textContent = v;
+  });
+}
+
+async function hashValue(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function openAuth(){
+  document.getElementById('authPrompt').style.display = 'flex';
+  document.getElementById('authInput').value = '';
+  document.getElementById('authInput').focus();
+}
+
+function closeAuth(){
+  document.getElementById('authPrompt').style.display = 'none';
+}
+
+async function verifyAuth(){
+  const val = document.getElementById('authInput').value;
+  const hashed = await hashValue(val);
+  if(hashed === targetHash){
+    isEditActive = true;
+    closeAuth();
+    els.forEach(el => el.contentEditable = 'true');
+  } else {
+    closeAuth();
+  }
+}
+
+document.getElementById('authInput').addEventListener('keydown', e => {
+  if(e.key === 'Enter') verifyAuth();
+  if(e.key === 'Escape') closeAuth();
+});
+
+els.forEach(el => {
+  el.addEventListener('blur', () => {
+    if(el.dataset.key) localStorage.setItem('eokul_demo_' + el.dataset.key, el.textContent.trim());
+  });
+  el.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      el.blur();
+    }
+  });
+});
+
+function showTab(id, btn){
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Gizli Giriş Mimarisi
+// 1. Kısayol: Ctrl + Alt + Shift + K
+document.addEventListener('keydown', e => {
+  if(e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'k') openAuth();
+});
+
+// 2. Gizli Tıklama: Başlık logosuna 5 defa üst üste tıklama
+let clicks = 0, timer = null;
+document.getElementById('brandTitle').addEventListener('click', () => {
+  clicks++;
+  clearTimeout(timer);
+  timer = setTimeout(() => clicks = 0, 1200);
+  if(clicks >= 5){
+    clicks = 0;
+    openAuth();
+  }
+});
+
+loadData();
+</script>
+</body>
+</html>
