@@ -1,211 +1,334 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>e-Okul Öğrenci Bilgi Sistemi - Demo</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef2f6;color:#263238}
-.top{background:#0b4f8a;color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 6px #0002}
-.brand{font-size:20px;font-weight:700;user-select:none}.sub{font-size:12px;opacity:.85;margin-top:3px}
-.container{max-width:1100px;margin:20px auto;padding:0 12px}
-.notice{background:#fff;border:1px solid #d7dee7;border-radius:5px;padding:11px 14px;color:#555;font-size:13px;margin-bottom:15px}
-.tabs{display:flex;gap:2px;flex-wrap:wrap;background:#dfe7ef;border-radius:5px 5px 0 0;padding:5px}
-.tab{border:1px solid #c8d2dc;background:#f7f9fb;padding:10px 14px;border-radius:4px;color:#174f7b;cursor:pointer;font-size:13px}
-.tab.active{background:#fff;color:#111;font-weight:bold;border-bottom-color:#fff}
-.card{background:#fff;border:1px solid #d4dce5;border-radius:0 5px 5px 5px;box-shadow:0 1px 3px #0001;padding:18px}
-.panel{display:none}.panel.active{display:block}
-.section-title{font-size:16px;font-weight:bold;color:#174f7b;border-bottom:2px solid #e3e8ed;padding-bottom:8px;margin-bottom:14px}
-.profile{display:grid;grid-template-columns:130px 1fr;gap:20px}
-.avatar{width:120px;height:145px;border:1px solid #cbd4dd;background:#f4f6f8;display:flex;align-items:center;justify-content:center;color:#8a969f;font-size:12px;text-align:center}
-.info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.field{border:1px solid #dce2e8;background:#fafbfc;border-radius:3px;padding:10px}
-.label{font-size:11px;color:#71808c;margin-bottom:4px}.value{font-size:14px;font-weight:600}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #d7dfe7;padding:9px;text-align:center}th{background:#edf3f8;color:#244f70}td:first-child{text-align:left}
-.smallbtn{border:1px solid #b8c4ce;background:#fff;border-radius:4px;padding:7px 10px;cursor:pointer}
-[contenteditable="true"]{outline:none}
-@media(max-width:700px){.profile{grid-template-columns:1fr}.info{grid-template-columns:1fr}.top{gap:10px}.brand{font-size:16px}.tab{flex:1 1 45%}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>e-Okul Mobil Şaka Tasarımı</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .mobile-container {
+      width: 100%;
+      max-width: 412px;
+      height: 100vh;
+      max-height: 870px;
+      background-color: #f5f7fb;
+      position: relative;
+      overflow-y: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Üst Mavi Kart */
+    .header-card {
+      background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 60%, #2563eb 100%);
+      color: white;
+      padding: 20px 16px 40px 16px;
+      border-bottom-left-radius: 35px;
+      border-bottom-right-radius: 35px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+
+    .top-bar-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .avatar-container {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      background-color: #e2e8f0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .student-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .student-info {
+      font-size: 13px;
+      opacity: 0.85;
+      font-weight: 500;
+    }
+
+    /* Grid Menü */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 0 16px;
+      margin-top: -25px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .grid-item {
+      background-color: white;
+      border-radius: 16px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #edf2f7;
+      text-align: center;
+    }
+
+    .grid-item svg {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 8px;
+      color: #2563eb;
+    }
+
+    .grid-item span {
+      font-size: 11px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    /* Liste Menüsü */
+    .list-container {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .list-item {
+      background-color: white;
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      border: 1px solid #f1f5f9;
+    }
+
+    .list-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .list-item-left svg {
+      width: 22px;
+      height: 22px;
+      color: #64748b;
+    }
+
+    .list-item span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .arrow-icon {
+      color: #cbd5e1;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Gizli Düzenleme Modu Bildirimi */
+    .edit-toast {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: #00ff66;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: none;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Düzenlenebilir Alan Vurgusu */
+    [contenteditable="true"] {
+      outline: 2px dashed #00ff66 !important;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      user-select: text !important;
+    }
+  </style>
 </head>
 <body>
-<header class="top">
-  <div><div class="brand" id="brandTitle">e-Okul Veli Bilgilendirme Sistemi</div><div class="sub">Öğrenci Bilgi Sistemi • Demo</div></div>
-  <div class="sub">Öğrenci Bilgi Sistemi</div>
-</header>
 
-<main class="container">
-  <div class="notice">Bu sayfa yerel çalışan bir <b>öğrenci bilgi sistemi demo</b> arayüzüdür. Bilgiler sadece bu tarayıcıda saklanır.</div>
+  <div class="mobile-container">
+    <div id="toast" class="edit-toast">✏️ DÜZENLEME MODU AÇILDI</div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('ogrenci',this)">Öğrenci Bilgileri</button>
-    <button class="tab" onclick="showTab('notlar',this)">Not Bilgileri</button>
-    <button class="tab" onclick="showTab('devamsizlik',this)">Devamsızlık</button>
-    <button class="tab" onclick="showTab('sinav',this)">Sınav Tarihleri</button>
-    <button class="tab" onclick="showTab('belge',this)">Belge Bilgileri</button>
-    <button class="tab" onclick="showTab('ders',this)">Ders Programı</button>
-  </div>
-
-  <section class="card">
-    <div id="ogrenci" class="panel active">
-      <div class="section-title">Öğrenci Bilgileri</div>
-      <div class="profile">
-        <div class="avatar">ÖĞRENCİ<br>FOTOĞRAFI</div>
-        <div class="info">
-          <div class="field"><div class="label">Adı</div><div class="value editable" data-key="ad">Osman Nuri</div></div>
-          <div class="field"><div class="label">Soyadı</div><div class="value editable" data-key="soyad">Gökçe</div></div>
-          <div class="field"><div class="label">Sınıf</div><div class="value editable" data-key="sinif">8-A</div></div>
-          <div class="field"><div class="label">Okul No</div><div class="value editable" data-key="okulno">1234</div></div>
-          <div class="field"><div class="label">Okul Adı</div><div class="value editable" data-key="okul">Örnek Ortaokulu</div></div>
-          <div class="field"><div class="label">Şube</div><div class="value editable" data-key="sube">A</div></div>
-          <div class="field"><div class="label">Doğum Tarihi</div><div class="value editable" data-key="dogum">13.02.2013</div></div>
-          <div class="field"><div class="label">Yabancı Dil</div><div class="value editable" data-key="dil">İngilizce</div></div>
+    <!-- Üst Profil Alanı -->
+    <div class="header-card">
+      <div class="top-bar">
+        <div class="top-bar-icon">
+          <span>🔔</span>
+          <span style="font-size: 9px; margin-top:2px;">Bildirimler</span>
         </div>
+        <div class="top-bar-icon">
+          <span>👤</span>
+          <span style="font-size: 9px; margin-top:2px;">Öğrenci Değiştir</span>
+        </div>
+      </div>
+
+      <div class="avatar-container">
+        <!-- İstersen buradaki görsel bağlantısını kendi fotoğrafınla değiştirebilirsin -->
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Osman" alt="Öğrenci">
+      </div>
+
+      <div id="studentName" class="student-name" title="5 kez tıkla">Osman Nuri Gökçe</div>
+      <div id="studentClass" class="student-info">8.Sınıf - 1541</div>
+    </div>
+
+    <!-- 6'lı Izgara Menü -->
+    <div class="grid-container">
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+        <span class="editable">Not Bilgileri</span>
+      </div>
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <span class="editable">Devamsızlık Bilgileri</span>
+      </div>
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <span class="editable">Ders Programı</span>
+      </div>
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span class="editable">Sınav Tarihleri</span>
+      </div>
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12H4z"></path></svg>
+        <span class="editable">Yazılı Ortalamaları</span>
+      </div>
+      <div class="grid-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span class="editable">Yıl Sonu Notları</span>
       </div>
     </div>
 
-    <div id="notlar" class="panel">
-      <div class="section-title">Not Bilgileri</div>
-      <table id="notesTable">
-        <thead><tr><th>Ders</th><th>1. Sınav</th><th>2. Sınav</th><th>1. Proje</th><th>Ortalama</th></tr></thead>
-        <tbody>
-          <tr><td class="editable" data-key="turkce_ders">Türkçe</td><td class="editable" data-key="turkce_1">95</td><td class="editable" data-key="turkce_2">98</td><td class="editable" data-key="turkce_p">100</td><td class="editable" data-key="turkce_o">97,7</td></tr>
-          <tr><td class="editable" data-key="mat_ders">Matematik</td><td class="editable" data-key="mat_1">100</td><td class="editable" data-key="mat_2">98</td><td class="editable" data-key="mat_p">100</td><td class="editable" data-key="mat_o">99,3</td></tr>
-          <tr><td class="editable" data-key="fen_ders">Fen Bilimleri</td><td class="editable" data-key="fen_1">98</td><td class="editable" data-key="fen_2">100</td><td class="editable" data-key="fen_p">100</td><td class="editable" data-key="fen_o">99,3</td></tr>
-          <tr><td class="editable" data-key="sos_ders">T.C. İnkılap Tarihi</td><td class="editable" data-key="sos_1">100</td><td class="editable" data-key="sos_2">97</td><td class="editable" data-key="sos_p">100</td><td class="editable" data-key="sos_o">99</td></tr>
-          <tr><td class="editable" data-key="ing_ders">İngilizce</td><td class="editable" data-key="ing_1">100</td><td class="editable" data-key="ing_2">100</td><td class="editable" data-key="ing_p">100</td><td class="editable" data-key="ing_o">100</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="devamsizlik" class="panel">
-      <div class="section-title">Devamsızlık Bilgileri</div>
-      <table><thead><tr><th>Devamsızlık Türü</th><th>Gün</th><th>Açıklama</th></tr></thead>
-      <tbody><tr><td class="editable" data-key="dev_tur">Özürlü Devamsızlık</td><td class="editable" data-key="dev_gun">0</td><td class="editable" data-key="dev_acik">Bulunmuyor</td></tr>
-      <tr><td class="editable" data-key="dev_tur2">Özürsüz Devamsızlık</td><td class="editable" data-key="dev_gun2">0</td><td class="editable" data-key="dev_acik2">Bulunmuyor</td></tr></tbody></table>
-    </div>
-
-    <div id="sinav" class="panel">
-      <div class="section-title">Sınav Tarihleri</div>
-      <table><thead><tr><th>Ders</th><th>Sınav</th><th>Tarih</th></tr></thead>
-      <tbody>
-        <tr><td class="editable" data-key="st1">Türkçe</td><td class="editable" data-key="ss1">1. Sınav</td><td class="editable" data-key="sd1">06.10.2026</td></tr>
-        <tr><td class="editable" data-key="st2">Matematik</td><td class="editable" data-key="ss2">1. Sınav</td><td class="editable" data-key="sd2">08.10.2026</td></tr>
-        <tr><td class="editable" data-key="st3">Fen Bilimleri</td><td class="editable" data-key="ss3">1. Sınav</td><td class="editable" data-key="sd3">12.10.2026</td></tr>
-      </tbody></table>
-    </div>
-
-    <div id="belge" class="panel">
-      <div class="section-title">Belge Bilgileri</div>
-      <table><thead><tr><th>Belge</th><th>Durum</th><th>Açıklama</th></tr></thead>
-      <tbody><tr><td class="editable" data-key="belge1">Takdir Belgesi</td><td class="editable" data-key="belge2">Almaya Uygun</td><td class="editable" data-key="belge3">Dönem sonunda hesaplanır.</td></tr></tbody></table>
-    </div>
-
-    <div id="ders" class="panel">
-      <div class="section-title">Haftalık Ders Programı</div>
-      <table><thead><tr><th>Gün</th><th>1. Ders</th><th>2. Ders</th><th>3. Ders</th><th>4. Ders</th></tr></thead>
-      <tbody>
-        <tr><td class="editable" data-key="pzt">Pazartesi</td><td class="editable" data-key="pzt1">Matematik</td><td class="editable" data-key="pzt2">Türkçe</td><td class="editable" data-key="pzt3">Fen</td><td class="editable" data-key="pzt4">İngilizce</td></tr>
-        <tr><td class="editable" data-key="sal">Salı</td><td class="editable" data-key="sal1">Fen</td><td class="editable" data-key="sal2">Matematik</td><td class="editable" data-key="sal3">Beden</td><td class="editable" data-key="sal4">Türkçe</td></tr>
-        <tr><td class="editable" data-key="car">Çarşamba</td><td class="editable" data-key="car1">İngilizce</td><td class="editable" data-key="car2">Fen</td><td class="editable" data-key="car3">Matematik</td><td class="editable" data-key="car4">Müzik</td></tr>
-      </tbody></table>
-    </div>
-  </section>
-</main>
-
-<div id="authPrompt" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
-  <div style="width:min(320px,90%);background:#fff;border-radius:6px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,0.3);">
-    <input id="authInput" type="password" placeholder="Oturum Anahtarı" style="width:100%;padding:9px;border:1px solid #ccc;border-radius:4px;margin-bottom:12px;">
-    <div style="display:flex;gap:8px;justify-content:flex-end;">
-      <button onclick="closeAuth()" class="smallbtn">İptal</button>
-      <button onclick="verifyAuth()" class="smallbtn">Tamam</button>
+    <!-- Alt Liste Menüsü -->
+    <div class="list-container">
+      <div class="list-item">
+        <div class="list-item-left">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          <span class="editable">DİLİM</span>
+        </div>
+        <div class="arrow-icon">›</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+          <span class="editable">Okul Randevu</span>
+        </div>
+        <div class="arrow-icon">›</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <span class="editable">Ders Devamsızlıkları</span>
+        </div>
+        <div class="arrow-icon">›</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+          <span class="editable">Davranış Notları</span>
+        </div>
+        <div class="arrow-icon">›</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+          <span class="editable">Nakil Bilgileri</span>
+        </div>
+        <div class="arrow-icon">›</div>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-let isEditActive = false;
-const els = [...document.querySelectorAll('.editable')];
-// '1234' şifresinin SHA-256 özeti
-const targetHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+  <script>
+    let clickCount = 0;
+    let clickTimer = null;
+    const studentNameEl = document.getElementById('studentName');
+    const toast = document.getElementById('toast');
 
-function loadData(){
-  els.forEach(el => {
-    const v = localStorage.getItem('eokul_demo_' + el.dataset.key);
-    if(v !== null) el.textContent = v;
-  });
-}
+    // Öğrenci ismine 5 kez tıklayınca düzenleme modunu aç
+    studentNameEl.addEventListener('click', () => {
+      clickCount++;
 
-async function hashValue(str) {
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 2000); // 2 saniye içinde 5 kez basılması gerekir
 
-function openAuth(){
-  document.getElementById('authPrompt').style.display = 'flex';
-  document.getElementById('authInput').value = '';
-  document.getElementById('authInput').focus();
-}
+      if (clickCount >= 5) {
+        enableEditing();
+        clickCount = 0;
+      }
+    });
 
-function closeAuth(){
-  document.getElementById('authPrompt').style.display = 'none';
-}
+    function enableEditing() {
+      // Düzenlenebilir elemanları seç
+      const editables = document.querySelectorAll('#studentName, #studentClass, .editable');
+      
+      editables.forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+      });
 
-async function verifyAuth(){
-  const val = document.getElementById('authInput').value;
-  const hashed = await hashValue(val);
-  if(hashed === targetHash){
-    isEditActive = true;
-    closeAuth();
-    els.forEach(el => el.contentEditable = 'true');
-  } else {
-    closeAuth();
-  }
-}
-
-document.getElementById('authInput').addEventListener('keydown', e => {
-  if(e.key === 'Enter') verifyAuth();
-  if(e.key === 'Escape') closeAuth();
-});
-
-els.forEach(el => {
-  el.addEventListener('blur', () => {
-    if(el.dataset.key) localStorage.setItem('eokul_demo_' + el.dataset.key, el.textContent.trim());
-  });
-  el.addEventListener('keydown', e => {
-    if(e.key === 'Enter'){
-      e.preventDefault();
-      el.blur();
+      // Bildirim göster
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
     }
-  });
-});
-
-function showTab(id, btn){
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// Gizli Giriş Mimarisi
-// 1. Kısayol: Ctrl + Alt + Shift + K
-document.addEventListener('keydown', e => {
-  if(e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === 'k') openAuth();
-});
-
-// 2. Gizli Tıklama: Başlık logosuna 5 defa üst üste tıklama
-let clicks = 0, timer = null;
-document.getElementById('brandTitle').addEventListener('click', () => {
-  clicks++;
-  clearTimeout(timer);
-  timer = setTimeout(() => clicks = 0, 1200);
-  if(clicks >= 5){
-    clicks = 0;
-    openAuth();
-  }
-});
-
-loadData();
-</script>
+  </script>
 </body>
 </html>
