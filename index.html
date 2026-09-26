@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif}
 body{background:#eef2f5;color:#2c3e50;display:flex;justify-content:center;min-height:100vh}
 
-.mobile-card{width:100%;max-width:430px;background:#f4f7f9;min-height:100vh;box-shadow:0 0 20px rgba(0,0,0,0.1);position:relative;padding-bottom:50px}
+.mobile-card{width:100%;max-width:430px;background:#f4f7f9;min-height:100vh;box-shadow:0 0 20px rgba(0,0,0,0.1);position:relative;padding-bottom:30px}
 
 /* Header Area */
 .header-bg{background:linear-gradient(180deg, #0d3880 0%, #1752b0 70%, #1e62ca 100%);color:#fff;padding:20px 20px 50px 20px;text-align:center;position:relative;border-bottom-left-radius:30px;border-bottom-right-radius:30px}
@@ -25,7 +25,7 @@ body{background:#eef2f5;color:#2c3e50;display:flex;justify-content:center;min-he
 /* Top App Header (Inside Panels) */
 .panel-app-header{background:linear-gradient(180deg, #0d3880 0%, #1752b0 100%);color:#fff;padding:15px;display:flex;align-items:center;justify-content:space-between}
 .panel-user-info{display:flex;align-items:center;gap:10px}
-.mini-avatar{width:36px;height:44px;background:#fff;border-radius:4px;overflow:hidden}
+.mini-avatar{width:36px;height:44px;background:#fff;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .mini-details{text-align:left}
 .mini-name{font-size:12px;font-weight:700}
 .mini-sub{font-size:10px;opacity:0.8}
@@ -63,14 +63,6 @@ body{background:#eef2f5;color:#2c3e50;display:flex;justify-content:center;min-he
 .term-btn{padding:10px;background:#f1f5f9;border:none;border-radius:20px;font-size:12px;font-weight:600;color:#475569;cursor:pointer;text-align:center}
 .term-btn.active{background:#2b529a;color:#fff}
 
-/* Error View Component */
-.error-box{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center}
-.error-icon-circle{width:60px;height:60px;border-radius:50%;border:2px solid #2b529a;display:flex;align-items:center;justify-content:center;color:#2b529a;margin-bottom:15px;font-size:28px;font-weight:bold}
-.error-msg{font-size:13px;color:#475569;line-height:1.5}
-
-/* Bottom Red Error Bar */
-.bottom-error-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#ef4444;color:#fff;padding:10px 16px;font-size:12px;font-weight:500;display:flex;align-items:center;z-index:99;box-shadow:0 -2px 10px rgba(0,0,0,0.15)}
-
 /* App Table */
 table.app-table{width:100%;border-collapse:collapse;font-size:12px}
 table.app-table th, table.app-table td{border:1px solid #e2e8f0;padding:8px;text-align:center}
@@ -84,7 +76,7 @@ table.app-table td:first-child{text-align:left}
 
 <div class="mobile-card">
   
-  <!-- Main Home Screen -->
+  <!-- Ana Ekran -->
   <div id="mainScreen">
     <div class="header-bg">
       <div class="header-top">
@@ -105,7 +97,7 @@ table.app-table td:first-child{text-align:left}
       <div class="student-sub"><span class="editable" data-key="stu_class">8.Sınıf</span> - <span class="editable" data-key="stu_no">1541</span></div>
     </div>
 
-    <!-- 6 Grid Icons -->
+    <!-- 6 Grid Buton -->
     <div class="grid-container">
       <div class="menu-grid">
         <div class="grid-item" onclick="openPanel('notlarPanel')">
@@ -135,10 +127,10 @@ table.app-table td:first-child{text-align:left}
       </div>
     </div>
 
-    <!-- Bottom Menu List -->
+    <!-- Alt Menü Listesi -->
     <div class="list-container">
       <div class="list-card">
-        <div class="list-item">
+        <div class="list-item" onclick="openPanel('dilimPanel')">
           <div class="list-left">
             <div class="list-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 18c0-2 2-3 5-3s5 1 5 3"/></svg></div>
             <div class="list-title">DİLİM</div>
@@ -148,7 +140,7 @@ table.app-table td:first-child{text-align:left}
       </div>
 
       <div class="list-card">
-        <div class="list-item">
+        <div class="list-item" onclick="openPanel('randevuPanel')">
           <div class="list-left">
             <div class="list-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg></div>
             <div class="list-title">Okul Randevu</div>
@@ -162,7 +154,7 @@ table.app-table td:first-child{text-align:left}
           </div>
           <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
         </div>
-        <div class="list-item">
+        <div class="list-item" onclick="openPanel('davranisPanel')">
           <div class="list-left">
             <div class="list-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
             <div class="list-title">Davranış Notları</div>
@@ -194,18 +186,17 @@ table.app-table td:first-child{text-align:left}
     </div>
   </div>
 
-  <!-- Detail Panel 1: Not Bilgileri -->
+  <!-- Panel: Not Bilgileri -->
   <div id="notlarPanel" class="content-panel">
     <div class="panel-app-header">
       <div class="panel-user-info">
-        <div class="mini-avatar"></div>
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
         <div class="mini-details">
           <div class="mini-name">OSMAN NURİ GÖKÇE</div>
           <div class="mini-sub">8.Sınıf - 1541</div>
         </div>
       </div>
       <div class="header-right-icons">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()" style="cursor:pointer"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
       </div>
     </div>
@@ -216,37 +207,29 @@ table.app-table td:first-child{text-align:left}
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()" style="cursor:pointer"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
         </div>
         <div class="term-switcher">
-          <button class="term-btn active" onclick="switchTerm(this, 't1')">1. Dönem</button>
-          <button class="term-btn" onclick="switchTerm(this, 't2')">2. Dönem</button>
+          <button class="term-btn active" onclick="switchTerm(this)">1. Dönem</button>
+          <button class="term-btn" onclick="switchTerm(this)">2. Dönem</button>
         </div>
-        
-        <!-- Hata Görünümü (Videodaki Gibi) -->
-        <div class="error-box" id="notlarErrorView">
-          <div class="error-icon-circle">!</div>
-          <div class="error-msg">Not bilgileri yüklenirken bir hata oluştu.<br>Lütfen tekrar deneyin.</div>
-        </div>
-
-        <!-- Düzenlenebilir Tablo Görünümü -->
-        <div id="notlarTableView" style="display:none">
-          <table class="app-table">
-            <thead><tr><th>Ders</th><th>1.Sınav</th><th>2.Sınav</th><th>Ort.</th></tr></thead>
-            <tbody>
-              <tr><td>Türkçe</td><td class="editable" data-key="n_tur1">95</td><td class="editable" data-key="n_tur2">100</td><td class="editable" data-key="n_turo">97.5</td></tr>
-              <tr><td>Matematik</td><td class="editable" data-key="n_mat1">100</td><td class="editable" data-key="n_mat2">98</td><td class="editable" data-key="n_mato">99.0</td></tr>
-              <tr><td>Fen Bil.</td><td class="editable" data-key="n_fen1">98</td><td class="editable" data-key="n_fen2">100</td><td class="editable" data-key="n_feno">99.0</td></tr>
-            </tbody>
-          </table>
-        </div>
-
+        <table class="app-table">
+          <thead><tr><th>Ders</th><th>1.Yazılı</th><th>2.Yazılı</th><th>Ort.</th></tr></thead>
+          <tbody>
+            <tr><td>Türkçe</td><td class="editable" data-key="n_tur1">100</td><td class="editable" data-key="n_tur2">100</td><td class="editable" data-key="n_turo">100.0</td></tr>
+            <tr><td>Matematik</td><td class="editable" data-key="n_mat1">100</td><td class="editable" data-key="n_mat2">98</td><td class="editable" data-key="n_mato">99.0</td></tr>
+            <tr><td>Fen Bilimleri</td><td class="editable" data-key="n_fen1">98</td><td class="editable" data-key="n_fen2">100</td><td class="editable" data-key="n_feno">99.0</td></tr>
+            <tr><td>İngilizce</td><td class="editable" data-key="n_ing1">100</td><td class="editable" data-key="n_ing2">100</td><td class="editable" data-key="n_ingo">100.0</td></tr>
+            <tr><td>Inkılap Tarihi</td><td class="editable" data-key="n_ink1">95</td><td class="editable" data-key="n_ink2">100</td><td class="editable" data-key="n_inko">97.5</td></tr>
+            <tr><td>Din Kültürü</td><td class="editable" data-key="n_din1">100</td><td class="editable" data-key="n_din2">100</td><td class="editable" data-key="n_dino">100.0</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- Detail Panel 2: Devamsızlık Bilgileri -->
+  <!-- Panel: Devamsızlık Bilgileri -->
   <div id="devamsizlikPanel" class="content-panel">
     <div class="panel-app-header">
       <div class="panel-user-info">
-        <div class="mini-avatar"></div>
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
         <div class="mini-details">
           <div class="mini-name">OSMAN NURİ GÖKÇE</div>
           <div class="mini-sub">8.Sınıf - 1541</div>
@@ -267,17 +250,18 @@ table.app-table td:first-child{text-align:left}
           <tbody>
             <tr><td>Özürsüz Devamsızlık</td><td class="editable" data-key="d_ozursuz">0 Gün</td></tr>
             <tr><td>Özürlü Devamsızlık</td><td class="editable" data-key="d_ozurlu">0 Gün</td></tr>
+            <tr><td>Toplam Devamsızlık</td><td class="editable" data-key="d_toplam">0 Gün</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- Generic Fallback Panel -->
-  <div id="genericPanel" class="content-panel">
+  <!-- Panel: Ders Programı -->
+  <div id="dersPanel" class="content-panel">
     <div class="panel-app-header">
       <div class="panel-user-info">
-        <div class="mini-avatar"></div>
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
         <div class="mini-details">
           <div class="mini-name">OSMAN NURİ GÖKÇE</div>
           <div class="mini-sub">8.Sınıf - 1541</div>
@@ -290,20 +274,197 @@ table.app-table td:first-child{text-align:left}
     <div class="panel-body">
       <div class="panel-card">
         <div class="panel-title-bar">
-          <div class="panel-title-text" id="genericTitle">Bilgi</div>
+          <div class="panel-title-text">Ders Programı</div>
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
         </div>
-        <div class="error-box">
-          <div class="error-icon-circle">!</div>
-          <div class="error-msg">Veriler yüklenirken bir hata oluştu.<br>Lütfen tekrar deneyin.</div>
+        <table class="app-table">
+          <thead><tr><th>Gün</th><th>1. Ders</th><th>2. Ders</th></tr></thead>
+          <tbody>
+            <tr><td>Pazartesi</td><td class="editable" data-key="dp_p1">Matematik</td><td class="editable" data-key="dp_p2">Türkçe</td></tr>
+            <tr><td>Salı</td><td class="editable" data-key="dp_s1">Fen Bil.</td><td class="editable" data-key="dp_s2">İngilizce</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Sınav Tarihleri -->
+  <div id="sinavPanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">Sınav Tarihleri</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <table class="app-table">
+          <thead><tr><th>Ders / Sınav</th><th>Tarih</th></tr></thead>
+          <tbody>
+            <tr><td>Türkçe 1. Yazılı</td><td class="editable" data-key="st_1">04.11.2026</td></tr>
+            <tr><td>Matematik 1. Yazılı</td><td class="editable" data-key="st_2">06.11.2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Yazılı Ortalamaları -->
+  <div id="yaziliPanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">Yazılı Ortalamaları</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <div style="font-size:14px;text-align:center;padding:20px">
+          1. Dönem Ağırlıklı Ortalaması: <strong class="editable" data-key="yo_1">99.25</strong>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Red Error Banner (Always at bottom like video) -->
-  <div class="bottom-error-bar">
-    İstenen veri bulunamadı.
+  <!-- Panel: Yıl Sonu Notları -->
+  <div id="yilsonuPanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">Yıl Sonu Notları</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <table class="app-table">
+          <thead><tr><th>Sınıf</th><th>Yıl Sonu Puanı</th></tr></thead>
+          <tbody>
+            <tr><td>7. Sınıf</td><td class="editable" data-key="ys_7">99.10</td></tr>
+            <tr><td>6. Sınıf</td><td class="editable" data-key="ys_6">98.50</td></tr>
+            <tr><td>5. Sınıf</td><td class="editable" data-key="ys_5">99.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: DİLİM -->
+  <div id="dilimPanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">LGS Yüzdelik Dilim</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <div style="font-size:14px;text-align:center;padding:20px">
+          Tahmini Yüzdelik Dilim: %<strong class="editable" data-key="lgs_dilim">0.25</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Okuduğu Kitaplar -->
+  <div id="kitapPanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">Okuduğu Kitaplar</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <table class="app-table">
+          <thead><tr><th>Kitap Adı</th><th>Sayfa Sayısı</th></tr></thead>
+          <tbody>
+            <tr><td class="editable" data-key="k_1">Nutuk</td><td class="editable" data-key="ks_1">543</td></tr>
+            <tr><td class="editable" data-key="k_2">Küçük Prens</td><td class="editable" data-key="ks_2">112</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Aldığı Belgeler -->
+  <div id="belgePanel" class="content-panel">
+    <div class="panel-app-header">
+      <div class="panel-user-info">
+        <div class="mini-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="#cbd5e1"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="mini-details">
+          <div class="mini-name">OSMAN NURİ GÖKÇE</div>
+          <div class="mini-sub">8.Sınıf - 1541</div>
+        </div>
+      </div>
+      <div class="header-right-icons">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M3 12l9-9 9 9M9 21V12h6v9"/></svg>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-card">
+        <div class="panel-title-bar">
+          <div class="panel-title-text">Aldığı Belgeler</div>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" onclick="closePanels()"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+        </div>
+        <table class="app-table">
+          <thead><tr><th>Dönem</th><th>Belge Türü</th></tr></thead>
+          <tbody>
+            <tr><td>7. Sınıf 2. Dönem</td><td class="editable" data-key="b_1">Takdir Belgesi</td></tr>
+            <tr><td>7. Sınıf 1. Dönem</td><td class="editable" data-key="b_2">Takdir Belgesi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -311,7 +472,7 @@ table.app-table td:first-child{text-align:left}
 <!-- Secret Modal -->
 <div id="secretModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
   <div style="width:280px;background:#fff;border-radius:12px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,0.2);">
-    <div style="font-size:13px;font-weight:600;color:#334155;margin-bottom:10px;text-align:center">Geliştirici Modu</div>
+    <div style="font-size:13px;font-weight:600;color:#334155;margin-bottom:10px;text-align:center">Düzenleme Modu</div>
     <input id="secretPass" type="password" placeholder="Şifre" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;margin-bottom:12px;outline:none;font-size:13px">
     <div style="display:flex;gap:8px">
       <button onclick="closeSecretModal()" style="flex:1;padding:8px;background:#e2e8f0;border:none;border-radius:6px;font-size:12px;font-weight:600">İptal</button>
@@ -323,13 +484,12 @@ table.app-table td:first-child{text-align:left}
 <script>
 const editables = [...document.querySelectorAll('.editable')];
 const targetHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"; // '1234'
-let editUnlocked = false;
 
 function loadSaved(){
   editables.forEach(el => {
     const key = el.dataset.key;
     if(key){
-      const saved = localStorage.getItem('eokul_vbs_v2_' + key);
+      const saved = localStorage.getItem('eokul_vbs_clean_' + key);
       if(saved !== null) el.textContent = saved;
     }
   });
@@ -340,9 +500,6 @@ function openPanel(id){
   const panel = document.getElementById(id);
   if(panel){
     panel.style.display = 'block';
-  } else {
-    document.getElementById('genericTitle').textContent = "Bilgi Ekranı";
-    document.getElementById('genericPanel').style.display = 'block';
   }
 }
 
@@ -350,14 +507,9 @@ function closePanels(){
   document.querySelectorAll('.content-panel').forEach(p => p.style.display = 'none');
 }
 
-function switchTerm(btn, term){
+function switchTerm(btn){
   document.querySelectorAll('.term-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  
-  if(editUnlocked){
-    document.getElementById('notlarErrorView').style.display = 'none';
-    document.getElementById('notlarTableView').style.display = 'block';
-  }
 }
 
 async function sha256(str) {
@@ -379,12 +531,8 @@ async function verifySecretPass(){
   const input = document.getElementById('secretPass').value;
   const hash = await sha256(input);
   if(hash === targetHash){
-    editUnlocked = true;
     closeSecretModal();
     editables.forEach(el => el.contentEditable = 'true');
-    // Notlar panelindeki hata ekranını kaldırıp tabloyu göster
-    document.getElementById('notlarErrorView').style.display = 'none';
-    document.getElementById('notlarTableView').style.display = 'block';
   } else {
     closeSecretModal();
   }
@@ -397,7 +545,7 @@ document.getElementById('secretPass').addEventListener('keydown', e => {
 editables.forEach(el => {
   el.addEventListener('blur', () => {
     if(el.dataset.key){
-      localStorage.setItem('eokul_vbs_v2_' + el.dataset.key, el.textContent.trim());
+      localStorage.setItem('eokul_vbs_clean_' + el.dataset.key, el.textContent.trim());
     }
   });
   el.addEventListener('keydown', e => {
